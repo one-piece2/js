@@ -32,6 +32,8 @@ let arr = [1,2,3,4];
 console.log(arr.concat()); // [1,2,3,4]
 console.log(arr.concat() === arr); //false
 
+
+
 //手写
 function shallowCopy(object){
      // 只拷贝对象
@@ -41,7 +43,7 @@ function shallowCopy(object){
   for(let x in object){
   // 只拷贝对象自身的属性，忽略原型链上的属性
     if(object.hasOwnProperty(x)){
-        object[x]=newObject[x]
+       newObject[x] = object[x]
     }
   }
   return newObject
