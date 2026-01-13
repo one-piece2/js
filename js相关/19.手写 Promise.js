@@ -25,9 +25,14 @@ class MyPromise {
   constructor(executor) {
     //箭头函数绑定类实例
     const resolve = (val) => {
+        if (isPromiseLike(val)) {
+        val.then(resolve, reject);
+        return;
+      }
       this.#setState(FULFILLED, val);
     };
     const reject = (reason) => {
+        
       this.#setState(REJECTED, reason);
     };
     try {
