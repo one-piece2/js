@@ -4,7 +4,9 @@ let span=document.querySelector('span')
 
 //数据劫持
 Object.defineProperty(obj,'text',{
+    //是否可以被删除
     configurable:true,
+    //是否可以被枚举
     enumerable:true,
     get(){
          console.log('获取数据了')
