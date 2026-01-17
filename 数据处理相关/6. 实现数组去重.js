@@ -8,7 +8,7 @@ function uniqueArray(arr){
     let res=[]
     let map={}
     for(const item of arr){
-        if(!map[item]){
+        if(!map.hasOwnproperty(item)){
             map[item]=1
             res.push(item)
         }
