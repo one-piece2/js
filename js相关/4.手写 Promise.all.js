@@ -1,3 +1,4 @@
+
 //Promise.all的作用：它接收一组异步任务，只有当所有任务都成功时才算成功，只要有一个失败，整个操作就失败。
 function myPromiseAll(promises) {
   return new Promise((res, rej) => {
@@ -25,3 +26,4 @@ function myPromiseAll(promises) {
     }
   });
 }
+

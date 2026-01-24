@@ -31,3 +31,23 @@ function doSomething(num) {
   // 步骤6：拼接小数部分并返回
   return result + decimalStr;
 }
+
+function thousandSeparator(num){
+//转字符串
+let [intergerPart,decimaPart]=num.toString().split('.')
+let count=0
+let arr=[]
+for(let i=intergerPart.length-1;i>=0;i--){
+  count++
+  arr.push(intergerPart[i])
+  if(count%3===0&&i!==0){
+    arr.push(',')
+  }
+  
+}
+let result=arr.reverse().join('')
+if(decimaPart){
+  result+='.'+decimaPart
+}
+return result
+}

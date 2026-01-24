@@ -38,7 +38,7 @@ tree = [
     ],
   },
 ];
-
+//哈希表存储版本
 function objToTree(data) {
   let result = [];
   if (!Array.isArray(data)) {
@@ -46,16 +46,34 @@ function objToTree(data) {
   }
   let map = {}; //将当前对象的id对应的对象存储起来
   data.forEach((item) => {
-    map[item.id] = item;
+    map[item.id] = {...item};
   });
   data.forEach((item) => {
+    let node=map[item.id]
     let parentId = item.pid;
-    let parent = map[parentId];
+  
     if (parentId) {
-      (parent.children || (parent.children = [])).push(item);
+        let parent = map[parentId];
+      (parent.children || (parent.children = [])).push(node);
     } else {
-      result.push(item);
+      result.push(node);
     }
   });
   return result
+}
+//递归版本
+function listToTree(data,parentId){
+   let len=data.length
+   function loop(parentId){
+    let res=[]
+    for(let i=0;i<len;i++){
+      let item=data[i]
+      if(item.pid===parentId){
+        item.children=loop(item.id)
+        res.push(item)
+      }
+    }
+    return res
+   }
+   return loop(parentId)
 }

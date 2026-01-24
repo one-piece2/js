@@ -34,4 +34,4 @@ xhr.onerror = function() {
 xhr.responseType = "json";
 xhr.setRequestHeader("Accept", "application/json");
 // 发送 Http 请求
-xhr.send(null);
+xhr.send();

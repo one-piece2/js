@@ -19,7 +19,7 @@ console.log(obj1); // {a: 1, b: {c: 1}}
 console.log(obj2); // {a: 0, b: {c: 0}}
 
 //2.手写实现深拷贝函数
-function deepclone(obj) {
+function deepclone(obj,cacha=new WeakMap()) {
   if (obj instanceof Date) {
     return new Date(obj);
   }
@@ -35,10 +35,14 @@ function deepclone(obj) {
   if (!obj || typeof obj !== "object") {
     return obj;
   }
+  if(cacha.has(obj)){
+    return cacha.get(obj)
+  }
   let newObject = Array.isArray(obj) ? [] : {};
+  cacha.set(obj,newObject)
   for (const x in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, x)) {
-      newObject[x] = deepclone(obj[x]);
+      newObject[x] = deepclone(obj[x],cacha);
     }
   }
   return newObject;
